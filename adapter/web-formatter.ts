@@ -3,7 +3,7 @@ import Observe from "https://deno.land/x/Observe@v1.2.1/Observe.ts";
 import type { SiteResult } from "sherlock/types.ts";
 
 export class WebFormatter extends Formatter {
-  observe = new Observe("initial");
+  observe = new Observe<SiteResult| undefined>(undefined);
 
   onInit(): void {
     // TODO maybe init observe here?
@@ -11,7 +11,7 @@ export class WebFormatter extends Formatter {
   onStart(): void {}
 
   onResult(siteResult: SiteResult): void {
-    this.observe.setValue(siteResult.siteName + ": " + siteResult.result);
+    this.observe.setValue(siteResult);
   }
   onFinish(options: FormatterOnFinishOptions): void {}
 }

@@ -1,0 +1,33 @@
+:root {
+  --text-color: #CBE8E7;
+  --accent-color: #424242;
+  --highlight-color: #EF9D21;
+  --background-color: #0B0E29;
+}
+
+body {
+  font-family: "DM Mono", monospace;
+  font-weight: 300;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+header h1 {
+  color: var(--highlight-color);
+  font-family: "Righteous", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  text-align: center;
+  margin: 0;
+}
+
+header p {
+  margin-top: 0;
+  text-align: center;
+}
