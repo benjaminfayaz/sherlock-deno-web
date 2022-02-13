@@ -8,8 +8,10 @@ import SearchForm from "../components/SearchForm.tsx";
 export default function Home() {
 
   const [state, setState] = useState<Array<SiteResult>>([]);
+  const [username, setUsername] = useState<string>("");
 
   const startScan = (username: string) => {
+    setUsername(username);
     const formatter = new WebFormatter();
 
     const scanner = new SherlockScanner({
@@ -36,7 +38,7 @@ export default function Home() {
         <link rel="stylesheet" href="../style/index.css" />
       </head>
       <SearchForm onSubmit={startScan} />
-      <Results results={state}/>
+      <Results results={state} username={username}/>
     </>
   )
 }

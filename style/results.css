@@ -1,0 +1,42 @@
+.results-container {
+  --result-text-color: #fff;
+  --result-highlight-color: #6FCF97;
+
+  background-color: #000;
+  width: 100%;
+  height: 0;
+  transition: height .3s ease-in-out;
+  overflow-y: scroll;
+}
+
+.result-username {
+  padding: 24px;
+}
+
+.results-active {
+  height: 500px;
+}
+
+ul {
+  list-style: none;
+  padding: 0 24px 24px;
+  margin: 0;
+}
+
+.result-icon-wrapper {
+  color: var(--result-text-color);
+  margin-right: 8px;
+}
+
+.result-icon {
+  color: var(--result-highlight-color);
+}
+
+.result-key {
+  color: var(--result-highlight-color);
+}
+
+.result-value {
+  color: var(--result-text-color);
+  margin-left: 8px;
+}

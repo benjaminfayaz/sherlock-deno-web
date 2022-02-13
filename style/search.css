@@ -1,5 +1,6 @@
 form {
   width: 100%;
+  margin: 24px 0;
 }
 
 .input-wrapper {
@@ -8,7 +9,7 @@ form {
   display: flex;
   border-radius: 30px;
   height: 40px;
-  margin: 16px 0;
+  margin-bottom: 16px;
 }
 
 input {
