@@ -1,9 +1,16 @@
 import React, { FormEvent, useState } from 'react'
+import type { WebFormatterOptions } from "../adapter/web-formatter.ts"
 import SearchIcon from "./SearchIcon.tsx";
 import "../style/search.css";
 
 type SearchFormProps = {
-  onSubmit: (username: string) => void
+  onSubmit: (username: string, options: WebFormatterOptions) => void
+}
+
+type SearchFormEventTarget = EventTarget & {
+  "show-all-checkbox": HTMLInputElement;
+  "export-checkbox": HTMLInputElement;
+  "export-format": HTMLSelectElement & {value: "csv" | "json"};
 }
 
 export default function SearchForm({ onSubmit }: SearchFormProps) {
@@ -12,7 +19,11 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
   const submitForm = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    onSubmit(username);
+    const eventTarget = event.target as SearchFormEventTarget;
+    const showAll = eventTarget["show-all-checkbox"].checked;
+    const exportFormat = (eventTarget["export-checkbox"].checked || undefined) && eventTarget["export-format"].value;
+
+    onSubmit(username, {showAll, exportFormat});
   }
 
   return (
@@ -23,12 +34,12 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
       </div>
       <div className="checkbox-wrapper">
         <label>
-          <input type="checkbox" />
+          <input name="show-all-checkbox" type="checkbox" />
           <div className="custom-checkbox"></div>
           Show all results
         </label>
         <label>
-          <input type="checkbox" />
+          <input name="export-checkbox" type="checkbox" />
           <div className="custom-checkbox"></div>
           Export as
           <select name="export-format">
