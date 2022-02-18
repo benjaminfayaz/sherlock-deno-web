@@ -18,7 +18,7 @@ export default function Home() {
     const scanner = new SherlockScanner({
       formatter,
       username,
-      timeout: 2,
+      timeout: 20, // due to https://github.com/checkerschaf/sherlock-deno/issues/7 we can't really use the timeout effectively
       proxyConfig: {
         url: "http://localhost:3000/",
         headers: {
