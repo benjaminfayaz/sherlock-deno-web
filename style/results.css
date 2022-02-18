@@ -42,7 +42,7 @@ ul {
   margin-left: 8px;
 }
 
-a.download-button {
+button.download-button {
   background-color: var(--highlight-color);
   color: var(--background-color);
   font-weight: 500;
@@ -50,4 +50,6 @@ a.download-button {
   padding: 16px 24px;
   border-radius: 30px;
   margin-top: 24px;
+  border: none;
+  cursor: pointer;
 }

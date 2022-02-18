@@ -31,7 +31,7 @@ export class WebFormatter extends Formatter {
     const filteredResults = results.filter(result => this.shouldShowResult(result));
 
     if (this.webFormatterOptions.exportFormat === 'json') {
-      exportData = JSON.stringify(options.results, null, 4);
+      exportData = JSON.stringify(filteredResults, null, 4);
     } else if (this.webFormatterOptions.exportFormat === 'csv') {
       exportData = '';
       for (const siteResult of filteredResults) {
