@@ -5,11 +5,14 @@ import { WebFormatter } from "../adapter/web-formatter.ts"
 import type { WebFormatterOptions } from "../adapter/web-formatter.ts"
 import Results from "../components/Results.tsx";
 import SearchForm from "../components/SearchForm.tsx";
+import DownloadButton from "../components/DownloadButton.tsx";
+import type { DownloadData } from '../components/DownloadButton.tsx';
 
 export default function Home() {
 
-  const [state, setState] = useState<Array<SiteResult>>([]);
+  const [results, setResults] = useState<Array<SiteResult>>([]);
   const [username, setUsername] = useState<string>("");
+  const [downloadData, setDownloadData] = useState<DownloadData | undefined>();
 
   const startScan = (username: string, options: WebFormatterOptions) => {
     setUsername(username);
@@ -28,9 +31,17 @@ export default function Home() {
     });
 
     scanner.scan();
-    formatter.observe.bind(data => {
-      setState(prevState => prevState.concat(data!));
+    formatter.resultsObserve.bind(data => {
+      setResults(prevState => prevState.concat(data!));
     })
+
+    if (options.exportFormat !== undefined) {
+      formatter.exportObserve.bind(data => {
+        if (data !== undefined || data !== "") {
+          setDownloadData({ format: options.exportFormat!, content: data! });
+        }
+      })
+    }
   }
 
   return (
@@ -39,7 +50,10 @@ export default function Home() {
         <link rel="stylesheet" href="../style/index.css" />
       </head>
       <SearchForm onSubmit={startScan} />
-      <Results results={state} username={username}/>
+      <Results results={results} username={username} />
+      {downloadData !== undefined &&
+        <DownloadButton data={downloadData} />
+      }
     </>
   )
 }

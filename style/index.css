@@ -6,4 +6,6 @@ main {
   background-color: #4444;
   padding: 32px;
   border-radius: 30px;
+  width: 80vw;
+  max-width: 750px;
 }

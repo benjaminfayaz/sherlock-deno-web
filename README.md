@@ -1,4 +1,4 @@
-# Sherlock-Deno Web 🕵️ - search users across 270+ websites
+# Sherlock-Deno Web 🕵️ search users across 270+ websites in your browser
 
 This project is a web client for the deno implementation of the [sherlock project](https://github.com/sherlock-project/sherlock), unsurpsingly named [sherlock-deno](https://github.com/checkerschaf/sherlock-deno).
 

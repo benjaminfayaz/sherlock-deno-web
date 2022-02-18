@@ -21,19 +21,20 @@ input {
   padding: 0 16px;
   color: var(--text-color);
   font-size: 1.5em;
+  min-width: 0;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 40px;
+  row-gap: 8px;
+  padding: 0 24px;
 }
 
 .checkbox-wrapper > * {
   display: inline-flex;
   align-items: center;
-}
-
-.checkbox-wrapper > :nth-child(1) {
-  margin-left: 16px;
-}
-
-.checkbox-wrapper > :nth-child(2) {
-  margin-left: 40px;
 }
 
 .custom-checkbox {
@@ -85,6 +86,7 @@ form button[type='submit'] {
   background-color: var(--accent-color);
   color: var(--text-color);
   width: 75px;
+  cursor: pointer;
 }
 
 .search-icon {

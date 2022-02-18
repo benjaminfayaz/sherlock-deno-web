@@ -1,6 +1,7 @@
 import { Formatter, FormatterOnFinishOptions } from 'sherlock/formatters/formatter.ts';
 import Observe from 'https://deno.land/x/Observe@v1.2.1/Observe.ts';
 import type { SiteResult } from 'sherlock/types.ts';
+import { getSiteUserUrl } from '../sherlock-deno/src/lib/fetcher.ts';
 
 export type WebFormatterOptions = {
   showAll: boolean;
@@ -8,25 +9,36 @@ export type WebFormatterOptions = {
 };
 
 export class WebFormatter extends Formatter {
-  observe = new Observe<SiteResult | undefined>(undefined);
+  resultsObserve = new Observe<SiteResult | undefined>(undefined);
+  exportObserve = new Observe<string | undefined>(undefined);
 
   constructor(private webFormatterOptions: WebFormatterOptions) {
-    console.log("called with option", webFormatterOptions.showAll)
     super({
       showAll: webFormatterOptions.showAll,
     });
   }
 
-  onInit(): void {
-    // TODO maybe init observe here?
-  }
+  onInit(): void {}
   onStart(): void {}
 
   onResult(siteResult: SiteResult): void {
-    this.observe.setValue(siteResult);
+    this.shouldShowResult(siteResult) && this.resultsObserve.setValue(siteResult);
   }
+
   onFinish(options: FormatterOnFinishOptions): void {
-    // TODO print total count
-    // TODO export file/ modal
+    let exportData;
+    const { results } = options;
+    const filteredResults = results.filter(result => this.shouldShowResult(result));
+
+    if (this.webFormatterOptions.exportFormat === 'json') {
+      exportData = JSON.stringify(options.results, null, 4);
+    } else if (this.webFormatterOptions.exportFormat === 'csv') {
+      exportData = '';
+      for (const siteResult of filteredResults) {
+        exportData += `${siteResult.siteName},"${getSiteUserUrl(siteResult.site, options.username)}",${siteResult.result}`;
+      }
+    }
+
+    this.exportObserve.setValue(exportData);
   }
 }
