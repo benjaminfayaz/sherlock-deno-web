@@ -7,12 +7,15 @@ import Results from "../components/Results.tsx";
 import SearchForm from "../components/SearchForm.tsx";
 import DownloadButton from "../components/DownloadButton.tsx";
 import type { DownloadData } from '../components/DownloadButton.tsx';
+import { useDeno } from "aleph/framework/react/mod.ts";
 
 export default function Home() {
 
   const [results, setResults] = useState<Array<SiteResult>>([]);
   const [username, setUsername] = useState<string>("");
   const [downloadData, setDownloadData] = useState<DownloadData | undefined>();
+
+  const environment = useDeno(() => Deno.env.get("ALEPH_ENV") as "development" | "production");
 
   const startScan = (username: string, options: WebFormatterOptions) => {
     setUsername(username);
@@ -23,7 +26,7 @@ export default function Home() {
       username,
       timeout: 20, // due to https://github.com/checkerschaf/sherlock-deno/issues/7 we can't really use the timeout effectively
       proxyConfig: {
-        url: "http://localhost:3000/",
+        url: environment === "production" ? "https://sherlock.benjaminfayaz.de/proxy/" : "http://localhost:3000/",
         headers: {
           "x-requested-with": "XMLHttpRequest"
         }

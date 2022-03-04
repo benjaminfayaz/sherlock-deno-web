@@ -3,3 +3,4 @@ Thumbs.db
 .aleph/
 dist/
 sherlock-deno
+.vercel
