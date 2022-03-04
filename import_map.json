@@ -1,7 +1,7 @@
 {
   "imports": {
     "~/": "./",
-    "sherlock/": "./sherlock-deno/src/",
+    "sherlock/": "https://deno.land/x/sherlock@v2.1.0/src/",
     "aleph/": "https://deno.land/x/aleph@v0.3.0-beta.19/",
     "aleph/types": "https://deno.land/x/aleph@v0.3.0-beta.19/types.d.ts",
     "aleph/web": "https://deno.land/x/aleph@v0.3.0-beta.19/framework/core/mod.ts",

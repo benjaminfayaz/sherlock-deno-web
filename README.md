@@ -2,6 +2,8 @@
 
 This project is a web client for the deno implementation of the [sherlock project](https://github.com/sherlock-project/sherlock), unsurpsingly named [sherlock-deno](https://github.com/checkerschaf/sherlock-deno).
 
+The only necessary change that had to be done in the [sherlock-deno repository](https://github.com/checkerschaf/sherlock-deno) was [this PR](https://github.com/checkerschaf/sherlock-deno/pull/8).
+
 ## Local Development
 Since we fetch the site results directly in the browser, we need to avoid CORS via a CORS Proxy.
 You can use any desired CORS proxy but in this case we are using the [cors-anywhere](https://github.com/Rob--W/cors-anywhere) project.
@@ -21,7 +23,7 @@ ln -s PATH_TO_SHERLOCK_DENO PATH_TO_SHERLOCK_DENO_WEB/sherlock-deno
 ```json
 {
   ...
-  "sherlock/": "https://deno.land/x/sherlock@v2.0.0/src",
+  "sherlock/": "https://deno.land/x/sherlock@v2.1.0/src",
 }
 ```
 becomes
