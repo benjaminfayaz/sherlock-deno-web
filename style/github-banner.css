@@ -1,0 +1,28 @@
+.github-banner-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.github-banner-item {
+  flex: 1 1 0px; /* make all flex items same width */
+  text-align: center;
+}
+
+.github-banner-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100px;
+  margin-bottom: 16px;
+}
+
+.github-banner-item-small img {
+  height: 60%;
+}
+
+.github-banner-item-large img {
+  height: 100%;
+}

@@ -8,6 +8,7 @@ import SearchForm from "../components/SearchForm.tsx";
 import DownloadButton from "../components/DownloadButton.tsx";
 import type { DownloadData } from '../components/DownloadButton.tsx';
 import { useDeno } from "aleph/framework/react/mod.ts";
+import GithubBanner from "../components/GithubBanner.tsx";
 
 export default function Home() {
 
@@ -52,11 +53,15 @@ export default function Home() {
       <head>
         <link rel="stylesheet" href="../style/index.css" />
       </head>
+      <GithubBanner />
       <SearchForm onSubmit={startScan} />
       <Results results={results} username={username} />
       {downloadData !== undefined &&
         <DownloadButton data={downloadData} />
       }
+      <p>
+        made by <a target="_blank" href="https://benjaminfayaz.de">benjaminfayaz</a> and <a target="_blank" href="https://janpoth.de">checkerschaf</a>
+      </p>
     </>
   )
 }
