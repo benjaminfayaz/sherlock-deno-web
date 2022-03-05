@@ -1,8 +1,8 @@
-# Sherlock-Deno Web 🕵️ search users across 270+ websites in your browser
+# sherlock-deno-web 🕵️ search users across 270+ websites in your browser
 
-This project is a web client for the deno implementation of the [sherlock project](https://github.com/sherlock-project/sherlock), unsurpsingly named [sherlock-deno](https://github.com/checkerschaf/sherlock-deno).
+> :information_source: You can visit the website here: [sherlock.benjaminfayaz.de](sherlock.benjaminfayaz.de)
 
-The only necessary change that had to be done in the [sherlock-deno repository](https://github.com/checkerschaf/sherlock-deno) was [this PR](https://github.com/checkerschaf/sherlock-deno/pull/8).
+This project is a web client for the [deno implementation](https://github.com/checkerschaf/sherlock-deno) of the [sherlock project](https://github.com/sherlock-project/sherlock).
 
 ## Local Development
 Since we fetch the site results directly in the browser, we need to avoid CORS via a CORS Proxy.
