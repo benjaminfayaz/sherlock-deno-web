@@ -1,5 +1,6 @@
 .header-wrapper {
   transition: max-height .3s ease;
+  margin-bottom: 24px;
 }
 
 .header-wrapper.collapsed {
