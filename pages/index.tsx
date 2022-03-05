@@ -34,6 +34,8 @@ export default function Home() {
   }, [])
 
   const startScan = (username: string, options: WebFormatterOptions) => {
+    if (username === '') return; // TODO proper validation and error handling
+
     setUsername(username);
     setScanStarted(true);
     const formatter = new WebFormatter(options);
@@ -70,7 +72,7 @@ export default function Home() {
         <Header />
         <GithubBanner />
       </div>
-      <SearchForm onSubmit={startScan} />
+      <SearchForm scanStarted={scanStarted} onSubmit={startScan} />
       {scanStarted &&
         <Results results={results} username={username} />
       }

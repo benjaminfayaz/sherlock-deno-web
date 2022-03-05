@@ -4,7 +4,8 @@ import SearchIcon from "./SearchIcon.tsx";
 import "../style/search.css";
 
 type SearchFormProps = {
-  onSubmit: (username: string, options: WebFormatterOptions) => void
+  onSubmit: (username: string, options: WebFormatterOptions) => void;
+  scanStarted: boolean;
 }
 
 type SearchFormEventTarget = EventTarget & {
@@ -13,7 +14,7 @@ type SearchFormEventTarget = EventTarget & {
   "export-format": HTMLSelectElement & {value: "csv" | "json"};
 }
 
-export default function SearchForm({ onSubmit }: SearchFormProps) {
+export default function SearchForm({ onSubmit, scanStarted }: SearchFormProps) {
   const [username, setUsername] = useState("");
 
   const submitForm = (event: FormEvent<HTMLFormElement>) => {
@@ -29,20 +30,20 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
   return (
     <form onSubmit={submitForm}>
       <div className="input-wrapper">
-        <input onChange={event => setUsername(event.target.value)} value={username} placeholder="Username" />
-        <button type="submit"><SearchIcon /></button>
+        <input onChange={event => setUsername(event.target.value)} value={username} placeholder="Username" disabled={scanStarted}/>
+        <button type="submit" disabled={scanStarted}><SearchIcon /></button>
       </div>
       <div className="checkbox-wrapper">
         <label>
-          <input name="show-all-checkbox" type="checkbox" />
+          <input name="show-all-checkbox" type="checkbox" disabled={scanStarted} />
           <div className="custom-checkbox"></div>
           Show all results
         </label>
         <label>
-          <input name="export-checkbox" type="checkbox" />
+          <input name="export-checkbox" type="checkbox" disabled={scanStarted} />
           <div className="custom-checkbox"></div>
           Export as
-          <select name="export-format">
+          <select name="export-format" disabled={scanStarted}>
             <option value="json">JSON</option>
             <option value="csv">CSV</option>
           </select>
