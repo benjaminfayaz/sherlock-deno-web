@@ -5,23 +5,32 @@
 
   background-color: #000;
   width: 100%;
-  height: 0;
-  transition: height .3s ease-in-out;
+  animation: animate-height .3s ease;
+  animation-fill-mode: forwards;
   overflow-y: scroll;
+}
+
+@keyframes animate-height {
+  from {
+    height: 0;
+  }
+  to {
+    height: 500px;
+  }
 }
 
 .result-username {
   padding: 24px;
 }
 
-.results-active {
-  height: 500px;
-}
-
 ul {
   list-style: none;
   padding: 0 24px 24px;
   margin: 0;
+}
+
+ul li {
+  white-space: nowrap;
 }
 
 .result-icon-wrapper {

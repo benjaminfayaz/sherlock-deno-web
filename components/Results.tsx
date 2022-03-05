@@ -28,14 +28,12 @@ export default function Results({ results, username }: ResultsProps) {
   }
 
   return (
-    <div className={"results-container " + (results.length > 0 ? "results-active" : "")}>
-      {(results.length > 0) && (
-        <div className="result-username">
-          <span className="result-icon-wrapper">[<span className="result-success">{">"}</span>]</span>
-          <span className="result-success">Input Username:</span>
-          <span className="result-value">{username}</span>
-        </div>
-      )}
+    <div className="results-container">
+      <div className="result-username">
+        <span className="result-icon-wrapper">[<span className="result-success">{">"}</span>]</span>
+        <span className="result-success">Input Username:</span>
+        <span className="result-value">{username}</span>
+      </div>
       <ul ref={listElement}>
         {results.map(result => (
           <li key={result.url}>

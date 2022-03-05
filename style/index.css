@@ -1,0 +1,8 @@
+.header-wrapper {
+  transition: max-height .3s ease;
+}
+
+.header-wrapper.collapsed {
+  overflow: hidden;
+  max-height: 0 !important;
+}

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useLayoutEffect, useRef, useState } from 'react'
 import { SherlockScanner } from "sherlock/sherlock-scanner.ts"
 import type { SiteResult } from "sherlock/types.ts"
 import { WebFormatter } from "../adapter/web-formatter.ts"
@@ -11,17 +11,31 @@ import { useDeno } from "aleph/framework/react/mod.ts";
 import GithubBanner from "../components/GithubBanner.tsx";
 import Header from "../components/Header.tsx";
 import Footer from "../components/Footer.tsx";
+import "../style/index.css"
 
 export default function Home() {
 
   const [results, setResults] = useState<Array<SiteResult>>([]);
   const [username, setUsername] = useState<string>("");
   const [downloadData, setDownloadData] = useState<DownloadData | undefined>();
+  const [scanStarted, setScanStarted] = useState(false);
+
+  const headerWrapperRef = useRef<HTMLDivElement>(null)
 
   const environment = useDeno(() => Deno.env.get("ALEPH_ENV") as "development" | "production");
 
+  const prepareHeaderTransition = () => {
+    const actualHeight = headerWrapperRef.current!.offsetHeight;
+    headerWrapperRef.current!.style.maxHeight = actualHeight + "px";
+  }
+
+  useLayoutEffect(() => {
+    prepareHeaderTransition();
+  }, [])
+
   const startScan = (username: string, options: WebFormatterOptions) => {
     setUsername(username);
+    setScanStarted(true);
     const formatter = new WebFormatter(options);
 
     const scanner = new SherlockScanner({
@@ -52,10 +66,14 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <GithubBanner />
+      <div className={"header-wrapper" + (scanStarted ? " collapsed" : "")} ref={headerWrapperRef}>
+        <Header />
+        <GithubBanner />
+      </div>
       <SearchForm onSubmit={startScan} />
-      <Results results={results} username={username} />
+      {scanStarted &&
+        <Results results={results} username={username} />
+      }
       {downloadData !== undefined &&
         <DownloadButton data={downloadData} />
       }
