@@ -17,20 +17,19 @@ body {
   height: 100vh;
 }
 
-header h1 {
-  color: var(--highlight-color);
-  font-family: "Righteous", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-size: 3rem;
-  letter-spacing: 2px;
-  text-align: center;
-  margin: 0;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #4444;
+  padding: 32px;
+  border-radius: 30px;
+  width: 100vw;
+  max-width: 750px;
+  box-sizing: border-box;
 }
 
-header p {
-  margin-top: 0;
-  text-align: center;
-}
 
 a {
   text-decoration: none;

@@ -1,5 +1,6 @@
 .github-banner-container {
   display: flex;
+  column-gap: 16px;
   justify-content: space-between;
   flex-wrap: nowrap;
   width: 100%;
@@ -15,8 +16,14 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  height: 100px;
+  height: 60px;
   margin-bottom: 16px;
+}
+
+@media screen and (min-width: 500px) {
+  .github-banner-image-container {
+    height: 100px;
+  }
 }
 
 .github-banner-item-small img {
