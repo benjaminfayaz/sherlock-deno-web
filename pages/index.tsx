@@ -30,36 +30,40 @@ export default function Home() {
   }
 
   const startScan = (username: string, options: WebFormatterOptions) => {
-    if (username === '') return; // TODO proper validation and error handling
-
-    prepareHeaderTransition();
-    setTimeout(() => setScanStarted(true), 0);
-    setUsername(username);
     const formatter = new WebFormatter(options);
 
-    const scanner = new SherlockScanner({
-      formatter,
-      username,
-      timeout: 20, // due to https://github.com/checkerschaf/sherlock-deno/issues/7 we can't really use the timeout effectively
-      proxyConfig: {
-        url: environment === "production" ? "https://sherlock.benjaminfayaz.de/proxy/" : "http://localhost:3000/",
-        headers: {
-          "x-requested-with": "XMLHttpRequest"
+    try {
+      const scanner = new SherlockScanner({
+        formatter,
+        username,
+        timeout: 20, // due to https://github.com/checkerschaf/sherlock-deno/issues/7 we can't really use the timeout effectively
+        proxyConfig: {
+          url: environment === "production" ? "https://sherlock.benjaminfayaz.de/proxy/" : "http://localhost:3000/",
+          headers: {
+            "x-requested-with": "XMLHttpRequest"
+          }
         }
-      }
-    });
+      });
 
-    scanner.scan();
-    formatter.resultsObserve.bind(data => {
-      setResults(prevState => prevState.concat(data!));
-    })
 
-    if (options.exportFormat !== undefined) {
-      formatter.exportObserve.bind(data => {
-        if (data !== undefined || data !== "") {
-          setDownloadData({ format: options.exportFormat!, content: data! });
-        }
+      prepareHeaderTransition();
+      setTimeout(() => setScanStarted(true), 0);
+      setUsername(username);
+
+      scanner.scan();
+      formatter.resultsObserve.bind(data => {
+        setResults(prevState => prevState.concat(data!));
       })
+
+      if (options.exportFormat !== undefined) {
+        formatter.exportObserve.bind(data => {
+          if (data !== undefined || data !== "") {
+            setDownloadData({ format: options.exportFormat!, content: data! });
+          }
+        })
+      }
+    } catch {
+      alert('Please enter a valid username'); // TODO proper validation and error handling
     }
   }
 
