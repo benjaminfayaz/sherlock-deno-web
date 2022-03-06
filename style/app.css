@@ -1,3 +1,5 @@
+@import url('http://fonts.googleapis.com/css?family=Righteous');
+
 :root {
   --text-color: #CBE8E7;
   --accent-color: #424242;
@@ -17,6 +19,21 @@ body {
   height: 100vh;
 }
 
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: .25;
+  background-image:url("/sherlock.svg");
+  background-size: 100vw;
+  background-repeat: repeat-y;
+  background-position: center;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -28,6 +45,7 @@ main {
   width: 100vw;
   max-width: 750px;
   box-sizing: border-box;
+  backdrop-filter: blur(10px);
 }
 
 
