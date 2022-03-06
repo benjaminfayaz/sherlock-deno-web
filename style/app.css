@@ -39,13 +39,14 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #4444;
+  background-color: #4442;
   padding: 32px;
   border-radius: 30px;
   width: 100vw;
   max-width: 750px;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
+  box-shadow: 0 0 50px 20px #0002;
 }
 
 
