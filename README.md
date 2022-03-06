@@ -37,7 +37,7 @@ becomes
 Now you can work with your local clone of both projects.
 
 ## Known issues
-Sadly the `aleph build` command doesn't work. In the `.aleph/production/app.bundling.js` file you have to manually correct the following import:
+Sadly the `aleph build` command doesn't work. Run it once, then manually correct the following import in `.aleph/production/app.bundling.js`:
 ```
 import "./-/fonts.googleapis.com/css2.[SOME-HASH].bundling.js";
 ```
@@ -45,3 +45,4 @@ to
 ```
 import "./-/fonts.googleapis.com/css2.[SOME-HASH].js"; // remove the .bundling
 ```
+and then run it again.
