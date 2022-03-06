@@ -11,6 +11,11 @@
   text-align: center;
 }
 
+.github-banner-item:hover > span {
+  transition: text-shadow .3s ease;
+  text-shadow: 0 0 5px #fff8;
+}
+
 .github-banner-image-container {
   display: flex;
   justify-content: center;
