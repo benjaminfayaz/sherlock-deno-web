@@ -38,11 +38,11 @@ Now you can work with your local clone of both projects.
 
 ## Known issues
 Sadly the `aleph build` command doesn't work. Run it once, then manually correct the following import in `.aleph/production/app.bundling.js`:
-```
+```js
 import "./-/fonts.googleapis.com/css2.[SOME-HASH].bundling.js";
 ```
 to
-```
+```js
 import "./-/fonts.googleapis.com/css2.[SOME-HASH].js"; // remove the .bundling
 ```
 and then run it again.
