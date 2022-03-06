@@ -1,4 +1,4 @@
-import React, { FormEvent, useLayoutEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { SherlockScanner } from "sherlock/sherlock-scanner.ts"
 import type { SiteResult } from "sherlock/types.ts"
 import { WebFormatter } from "../adapter/web-formatter.ts"
@@ -29,15 +29,12 @@ export default function Home() {
     headerWrapperRef.current!.style.maxHeight = actualHeight + "px";
   }
 
-  useLayoutEffect(() => {
-    prepareHeaderTransition();
-  }, [])
-
   const startScan = (username: string, options: WebFormatterOptions) => {
     if (username === '') return; // TODO proper validation and error handling
 
+    prepareHeaderTransition();
+    setTimeout(() => setScanStarted(true), 0);
     setUsername(username);
-    setScanStarted(true);
     const formatter = new WebFormatter(options);
 
     const scanner = new SherlockScanner({

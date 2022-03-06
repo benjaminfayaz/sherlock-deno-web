@@ -1,9 +1,9 @@
 .header-wrapper {
-  transition: max-height .3s ease;
   margin-bottom: 24px;
 }
 
 .header-wrapper.collapsed {
+  transition: max-height .3s ease;
   overflow: hidden;
   max-height: 0 !important;
 }
