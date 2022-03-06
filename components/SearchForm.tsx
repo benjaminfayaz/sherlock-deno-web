@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from 'react'
 import type { WebFormatterOptions } from "../adapter/web-formatter.ts"
 import SearchIcon from "./SearchIcon.tsx";
-import "../style/search.css";
+import "../style/search-form.css";
 
 type SearchFormProps = {
   onSubmit: (username: string, options: WebFormatterOptions) => void;
