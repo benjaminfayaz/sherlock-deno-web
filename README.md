@@ -1,6 +1,6 @@
 # sherlock-deno-web 🕵️ search users across 270+ websites in your browser
 
-> :information_source: You can visit the website here: [sherlock.benjaminfayaz.de](sherlock.benjaminfayaz.de)
+> :information_source: You can visit the website here: [sherlock.benjaminfayaz.de](https://sherlock.benjaminfayaz.de)
 
 This project is a web client for the [deno implementation](https://github.com/checkerschaf/sherlock-deno) of the [sherlock project](https://github.com/sherlock-project/sherlock).
 
