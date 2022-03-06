@@ -6,7 +6,7 @@ This project is a web client for the [deno implementation](https://github.com/ch
 
 ## Local Development
 Since we fetch the site results directly in the browser, we need to avoid CORS via a CORS Proxy.
-You can use any desired CORS proxy but in this case we are using the [cors-anywhere](https://github.com/Rob--W/cors-anywhere) project.
+You can use any desired CORS proxy but in this case I am using the [cors-anywhere](https://github.com/Rob--W/cors-anywhere) project.
 For ease of use you can use one of the docker images like
 ```sh
 docker run -p 3000:3000 psimonov/cors-anywhere
@@ -35,3 +35,13 @@ becomes
 ```
 
 Now you can work with your local clone of both projects.
+
+## Known issues
+Sadly the `aleph build` command doesn't work. In the `.aleph/production/app.bundling.js` file you have to manually correct the following import:
+```
+import "./-/fonts.googleapis.com/css2.[SOME-HASH].bundling.js";
+```
+to
+```
+import "./-/fonts.googleapis.com/css2.[SOME-HASH].js"; // remove the .bundling
+```
